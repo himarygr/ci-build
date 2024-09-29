@@ -1,0 +1,23 @@
+stages:
+  - build
+  - test
+  - package
+
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+
+build:
+  stage: build
+  script:
+    - chmod +x build.sh
+    - ./build.sh build ci
+
+test:
+  stage: test
+  script:
+    - ./build.sh test ci
+
+package:
+  stage: package
+  script:
+    - ./build.sh package ci
